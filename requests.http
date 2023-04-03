@@ -1,0 +1,28 @@
+### List all artists 
+GET http://localhost:3000/artists
+
+### Create a new user
+POST http://localhost:3000/auth/signup
+Content-Type: application/json
+
+{
+    "email": "blowecle@gmail.com",
+    "password": "baseball87"
+}
+
+### Find a particular user with a given id
+GET http://localhost:3000/auth/1
+
+### Find all users
+GET http://localhost:3000/auth
+
+### Delete a user with a given id
+DELETE http://localhost:3000/auth/4
+
+### Update a user with a given id
+PATCH http://localhost:3000/auth/3
+Content-Type: application/json
+
+{
+    "email": "blowe2887@hotmail.com"
+}
