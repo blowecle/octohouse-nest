@@ -11,6 +11,10 @@ export class User {
   @Column()
   password: string;
 
+  
+  @Column({nullable: true, default: false})
+  admin: boolean;
+
   @AfterInsert()
   logInsert() {
     console.log('Inserted user with id: ', this.id);

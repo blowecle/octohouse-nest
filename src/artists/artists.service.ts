@@ -1,26 +1,45 @@
 import { Injectable } from '@nestjs/common';
-import { CreateArtistDto } from './dto/create-artist.dto';
-import { UpdateArtistDto } from './dto/update-artist.dto';
+import { Artist } from './entities/artist.entity';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { NotFoundException } from '@nestjs/common';
 
 @Injectable()
 export class ArtistsService {
-  create(createArtistDto: CreateArtistDto) {
-    return 'This action adds a new artist';
+  constructor(@InjectRepository(Artist) private repo: Repository<Artist>) {}
+
+  async find() {
+    return await this.repo.find();
   }
 
-  async findAll() {
-    return await `This action returns all artists`;
+  async findOneBy(artistId: number) {
+    return await this.repo.findOneBy({artistId})
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} artist`;
+  async create(name: string, company: string, blurb: string, title: string) {
+    const artist = this.repo.create({name, company, blurb, title});
+
+    return await this.repo.save(artist);
   }
 
-  update(id: number, updateArtistDto: UpdateArtistDto) {
-    return `This action updates a #${id} artist`;
+  async update(artistId: number, attrs: Partial<Artist>) {
+    const artist = await this.findOneBy(artistId);
+
+    if(!artist){
+      throw new NotFoundException('Artist not found');
+    }
+
+    Object.assign(artist, attrs);
+    return this.repo.save(artist);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} artist`;
+  async remove(artistId: number) {
+    const artist = await this.findOneBy(artistId);
+
+    if(!artist){
+      throw new NotFoundException('Artist not found');
+    }
+
+    return this.repo.remove(artist);
   }
 }

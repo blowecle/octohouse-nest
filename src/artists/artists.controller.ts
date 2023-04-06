@@ -2,33 +2,41 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ArtistsService } from './artists.service';
 import { CreateArtistDto } from './dto/create-artist.dto';
 import { UpdateArtistDto } from './dto/update-artist.dto';
+import { ArtistDto } from './dto/artist.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { NotFoundException } from '@nestjs/common';
 
+@Serialize(ArtistDto)
 @Controller('artists')
 export class ArtistsController {
-  constructor(private readonly artistsService: ArtistsService) {}
+  constructor(private artistsService: ArtistsService) {}
 
-  @Post()
-  create(@Body() createArtistDto: CreateArtistDto) {
-    return this.artistsService.create(createArtistDto);
+  @Post('/create')
+  async createArtist(@Body() body: CreateArtistDto) {
+    return await this.artistsService.create(body.name, body.company, body.blurb, body.title);
   }
 
   @Get()
-  findAll() {
-    return this.artistsService.findAll();
+  async findArtists() {
+    return await this.artistsService.find();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.artistsService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    const artist = await this.artistsService.findOneBy(parseInt(id));
+    if(!artist){
+      throw new NotFoundException('Artist not found');
+    }
+    return artist
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateArtistDto: UpdateArtistDto) {
-    return this.artistsService.update(+id, updateArtistDto);
+  async update(@Param('id') id: string, @Body() body: Partial<UpdateArtistDto>) {
+    return await this.artistsService.update(parseInt(id), body);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.artistsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    return await this.artistsService.remove(parseInt(id));
   }
 }

@@ -1,28 +1,42 @@
-import { Injectable } from '@nestjs/common';
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Req,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req } from '@nestjs/common';
 import { ArtifactsService } from './artifacts.service';
-import { Request } from 'express';
+import { CreateArtifactDto } from './dto/create-artifact.dto';
+import { UpdateArtifactDto } from './dto/update-artifact.dto';
+import { NotFoundException } from '@nestjs/common';
+import { ArtifactDto } from './dto/artifact.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 
-@Controller()
+@Serialize(ArtifactDto)
+@Controller('artifacts')
 export class ArtifactsController {
   constructor(private artifactsService: ArtifactsService) {}
 
-  @Get()
-  async findAll(@Req() request: Request): Promise<any> {
-    return this.artifactsService.find();
+  @Post('/create')
+  createArtifact(@Body() body: CreateArtifactDto) {
+    this.artifactsService.create(body.name, body.blurb);
   }
 
-  // @Get('/artifacts/:id')
-  // findOne(@Param('id') id: number) {
-  //   return this.artifactsService.findOneBy(id);
-  // }
+  @Get()
+  async findArtifacts() {
+    return await this.artifactsService.find();
+  }
+
+  @Get('/:id')
+  async findArtifact(@Param('id') id: string) {
+    const artifact = await this.artifactsService.findOneBy(parseInt(id));
+    if (!artifact) {
+      throw new NotFoundException('Artifact not found');
+    }
+    return artifact;
+  }
+
+  @Delete('/:id')
+  async removeArtifact(@Param('id') id: string) {
+    return await this.artifactsService.remove(parseInt(id));
+  }
+
+  @Patch('/:id')
+  async updateArtifact(@Param('id') id: string, @Body() body: Partial<UpdateArtifactDto>) {
+    return await this.artifactsService.update(parseInt(id), body);
+  }
 }

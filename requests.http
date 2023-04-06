@@ -1,28 +1,111 @@
-### List all artists 
+##############################
+### ARTIFACT ROUTE TESTING ###
+##############################
+
+### List all artifacts 
+GET http://localhost:3000/artifacts
+
+
+### Find a particular artifact with a given id
+GET http://localhost:3000/artifacts/2
+
+### Create a new artifact
+POST http://localhost:3000/artifacts/create
+Content-Type: application/json
+
+{   
+    "name": "Artifact 1",
+    "blurb": "This is a blurb about artifact 1"
+}
+
+### Delete an artifact with a given id
+DELETE http://localhost:3000/artifacts/1
+
+### Update an artifact with a given id
+PATCH http://localhost:3000/artifacts/2
+Content-Type: application/json
+
+{
+    "name": "Artifact 1",
+    "blurb": "This is a blurb about artifact 1"
+}
+
+##############################
+###  ARTIST ROUTE TESTING  ###
+##############################
+
+### List all artists
 GET http://localhost:3000/artists
+
+### Find a particular artist with a given id
+GET http://localhost:3000/artists/3
+
+### Create a new artist
+POST http://localhost:3000/artists/create
+Content-Type: application/json
+
+{
+    "name": "Artist 1",
+    "blurb": "This is a blurb about artist 1"
+}
+
+### Update an artist with a given id
+PATCH http://localhost:3000/artists/2
+Content-Type: application/json
+
+{
+    "name": "Artist 2",
+    "blurb": "This is a blurb about artist 2",
+    "company": "Company 2",
+    "title": "Title 2"
+}
+
+### Delete an artist with a given id
+DELETE http://localhost:3000/artists/2
+
+
+##############################
+###   USER ROUTE TESTING   ###
+##############################
 
 ### Create a new user
 POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "blowecle@gmail.com",
+    "email": "delly@gmail.com",
     "password": "baseball87"
 }
 
-### Find a particular user with a given id
-GET http://localhost:3000/auth/1
-
-### Find all users
-GET http://localhost:3000/auth
-
-### Delete a user with a given id
-DELETE http://localhost:3000/auth/4
-
-### Update a user with a given id
-PATCH http://localhost:3000/auth/3
+### Sign in as an existing user
+POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-    "email": "blowe2887@hotmail.com"
+    "email": "delly@gmail.com",
+    "password": "baseball87"
+}
+
+### Get the currently signed in user
+GET http://localhost:3000/auth/whoami
+
+### Sign out the currently signed in user
+POST http://localhost:3000/auth/signout
+
+### Find a particular user with a given id
+GET http://localhost:3000/auth/2
+
+### Find all users with a particular email
+GET http://localhost:3000/auth?email=delly@gmail.com
+
+### Delete a user with a given id
+DELETE http://localhost:3000/auth/3
+
+### Update a user with a given id
+PATCH http://localhost:3000/auth/1
+Content-Type: application/json
+
+{
+    "email": "blowe2887@hotmail.com",
+    "admin": true
 }

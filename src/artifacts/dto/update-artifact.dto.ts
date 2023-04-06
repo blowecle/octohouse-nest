@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateArtifactDto } from './create-artifact.dto';
+import { IsString, IsOptional } from "class-validator";
 
-export class UpdateArtifactDto extends PartialType(CreateArtifactDto) {}
+export class UpdateArtifactDto {
+    @IsString()
+    @IsOptional()
+    name: string;
+
+    @IsString()
+    @IsOptional()
+    blurb: string;
+}

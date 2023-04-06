@@ -1,4 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { IsOptional } from "class-validator";
 
 @Entity()
 export class Artist {
@@ -8,18 +9,18 @@ export class Artist {
     @Column()
     name: string;
 
-    @Column()
+    @Column({nullable: true})
     company: string;
 
-    // @Column()
+    // @Column({nullable: true})
     // social: Array<string>;
 
-    @Column()
+    @Column({nullable: true})
     blurb: string;
 
-    @Column()
+    @Column({nullable: true})
     title: string;
 
-    // @Column()
+    // @Column({nullable: true})
     // artifactId: Array<number>;
 }
