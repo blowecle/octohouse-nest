@@ -83,11 +83,13 @@ export class UsersController {
   }
 
   @Delete('/:id')
+  @UseGuards(AuthGuard)
   removeUser(@Param('id') id: string) {
     return this.usersService.remove(parseInt(id));
   }
 
   @Patch('/:id')
+  @UseGuards(AuthGuard)
   updateUser(@Param('id') id: string, @Body() body: Partial<UpdateUserDto>) {
     return this.usersService.update(parseInt(id), body);
   }

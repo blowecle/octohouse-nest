@@ -14,13 +14,31 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Artifact } from './artifacts/entities/artifact.entity';
 import { Artist } from './artists/entities/artist.entity';
 import { User } from './users/entities/users.entity';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [ArtifactsModule, ArtistsModule, UsersModule, TypeOrmModule.forRoot({
-    type: 'sqlite',
-    database: 'db.sqlite',
-    entities: [Artifact, Artist, User],
-    synchronize: true,
+  imports: [ConfigModule.forRoot({
+    isGlobal: true,
+    envFilePath: `.env.${process.env.NODE_ENV}`,
+  }), 
+  ArtifactsModule, 
+  ArtistsModule, 
+  UsersModule, 
+  // TypeOrmModule.forRoot({
+  //   type: 'sqlite',
+  //   database: 'db.sqlite',
+  //   entities: [Artifact, Artist, User],
+  //   synchronize: true,
+  // })],
+  TypeOrmModule.forRootAsync({
+    imports: [ConfigModule],
+    inject: [ConfigService],
+    useFactory: (configService: ConfigService) => ({
+      type: 'sqlite',
+      database: configService.get<string>('DB_NAME'),
+      synchronize: true,
+      entities: [Artifact, Artist, User],
+    })
   })],
   controllers: [AppController],
   providers: [AppService],

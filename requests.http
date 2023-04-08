@@ -73,8 +73,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "delly@gmail.com",
-    "password": "baseball87"
+    "email": "willie@gmail.com",
+    "password": "password",
+    "admin": false
 }
 
 ### Sign in as an existing user
@@ -83,7 +84,7 @@ Content-Type: application/json
 
 {
     "email": "delly@gmail.com",
-    "password": "baseball87"
+    "password": "password"
 }
 
 ### Get the currently signed in user
@@ -93,19 +94,20 @@ GET http://localhost:3000/auth/whoami
 POST http://localhost:3000/auth/signout
 
 ### Find a particular user with a given id
-GET http://localhost:3000/auth/2
+GET http://localhost:3000/auth/3
 
 ### Find all users with a particular email
 GET http://localhost:3000/auth?email=delly@gmail.com
 
 ### Delete a user with a given id
-DELETE http://localhost:3000/auth/3
+DELETE http://localhost:3000/auth/1
 
 ### Update a user with a given id
 PATCH http://localhost:3000/auth/1
 Content-Type: application/json
 
 {
-    "email": "blowe2887@hotmail.com",
+    "email": "delly@hotmail.com",
+    "password": "password",
     "admin": true
 }
