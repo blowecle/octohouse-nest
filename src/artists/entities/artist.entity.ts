@@ -1,5 +1,6 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from "typeorm";
 import { IsOptional } from "class-validator";
+import { Artifact } from "src/artifacts/entities/artifact.entity";
 
 @Entity()
 export class Artist {
@@ -20,6 +21,15 @@ export class Artist {
 
     @Column({nullable: true})
     title: string;
+
+    @Column({default: false})
+    approved: boolean;
+
+    // @Column({nullable: true})
+    // artifactId: number;
+
+    @ManyToMany(() => Artifact, artifact => artifact.artists)
+    artifacts: Artifact[];
 
     // @Column({nullable: true})
     // artifactId: Array<number>;

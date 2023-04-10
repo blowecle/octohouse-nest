@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from "typeorm";
+import { Artist } from "src/artists/entities/artist.entity";
 
 @Entity()
 export class Artifact {
@@ -19,4 +20,11 @@ export class Artifact {
     
     // @Column()
     // artistDescription: Array<string>;
+
+    @Column({default: false})
+    approved: boolean;
+
+    @ManyToMany(() => Artist, artist => artist.artifacts)
+    @JoinTable()
+    artists: Artist[];
 }

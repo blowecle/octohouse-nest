@@ -3,6 +3,7 @@ import { Artist } from './entities/artist.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { NotFoundException } from '@nestjs/common';
+import { CreateArtistDto } from 'src/artists/dto/create-artist.dto';
 
 @Injectable()
 export class ArtistsService {
@@ -16,8 +17,8 @@ export class ArtistsService {
     return await this.repo.findOneBy({artistId})
   }
 
-  async create(name: string, company: string, blurb: string, title: string) {
-    const artist = this.repo.create({name, company, blurb, title});
+  async create(artistDto: CreateArtistDto) {
+    const artist = this.repo.create(artistDto);
 
     return await this.repo.save(artist);
   }
@@ -41,5 +42,16 @@ export class ArtistsService {
     }
 
     return this.repo.remove(artist);
+  }
+
+  async approveArtist(artistId: number, approved: boolean) {
+    const artist = await this.findOneBy(artistId);
+
+    if(!artist){
+      throw new NotFoundException('Artist not found');
+    }
+
+    artist.approved = approved;
+    return this.repo.save(artist);
   }
 }

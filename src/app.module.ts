@@ -17,7 +17,9 @@ import { User } from './users/entities/users.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot({
+  imports: [
+    TypeOrmModule.forFeature([Artifact, Artist, User]),
+    ConfigModule.forRoot({
     isGlobal: true,
     envFilePath: `.env.${process.env.NODE_ENV}`,
   }), 

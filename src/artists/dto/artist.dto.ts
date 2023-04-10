@@ -15,4 +15,7 @@ export class ArtistDto {
 
     @Expose()
     title: string;
+
+    @Expose()
+    approved: boolean;
 }

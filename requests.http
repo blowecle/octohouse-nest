@@ -46,18 +46,28 @@ Content-Type: application/json
 
 {
     "name": "Artist 1",
-    "blurb": "This is a blurb about artist 1"
+    "blurb": "This is a blurb about artist 1",
+    "company": "Company 1",
+    "title": "Title 1"
+}
+
+### Approve an artist with a given id
+PATCH http://localhost:3000/artists/2/approve
+Content-Type: application/json
+
+{
+    "approved": true
 }
 
 ### Update an artist with a given id
-PATCH http://localhost:3000/artists/2
+PATCH http://localhost:3000/artists/1
 Content-Type: application/json
 
 {
     "name": "Artist 2",
     "blurb": "This is a blurb about artist 2",
     "company": "Company 2",
-    "title": "Title 2"
+    "title": "Title 3"
 }
 
 ### Delete an artist with a given id
@@ -73,9 +83,9 @@ POST http://localhost:3000/auth/signup
 Content-Type: application/json
 
 {
-    "email": "willie@gmail.com",
+    "email": "brandon@gmail.com",
     "password": "password",
-    "admin": false
+    "admin": true
 }
 
 ### Sign in as an existing user
@@ -83,7 +93,7 @@ POST http://localhost:3000/auth/signin
 Content-Type: application/json
 
 {
-    "email": "delly@gmail.com",
+    "email": "brandon@gmail.com",
     "password": "password"
 }
 
@@ -94,7 +104,7 @@ GET http://localhost:3000/auth/whoami
 POST http://localhost:3000/auth/signout
 
 ### Find a particular user with a given id
-GET http://localhost:3000/auth/3
+GET http://localhost:3000/auth/2
 
 ### Find all users with a particular email
 GET http://localhost:3000/auth?email=delly@gmail.com
