@@ -42,4 +42,14 @@ export class ArtifactsService {
 
     return this.repo.remove(artifact);
   }
+
+  async changeApproval(artifactId: number, approved: boolean) {
+    const artifact = await this.findOneBy(artifactId);
+    if (!artifact) {
+      throw new NotFoundException('artifact not found');
+    }
+
+    artifact.approved = approved;
+    return this.repo.save(artifact);
+  }
 }
