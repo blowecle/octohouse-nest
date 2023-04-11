@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ArtifactsModule } from './artifacts/artifacts.module';
@@ -15,6 +15,9 @@ import { Artifact } from './artifacts/entities/artifact.entity';
 import { Artist } from './artists/entities/artist.entity';
 import { User } from './users/entities/users.entity';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+const cookieSession = require('cookie-session');
+import { dbConfig } from '../ormconfig';
+
 
 @Module({
   imports: [
@@ -23,26 +26,35 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     isGlobal: true,
     envFilePath: `.env.${process.env.NODE_ENV}`,
   }), 
-  ArtifactsModule, 
-  ArtistsModule, 
-  UsersModule, 
-  // TypeOrmModule.forRoot({
-  //   type: 'sqlite',
-  //   database: 'db.sqlite',
-  //   entities: [Artifact, Artist, User],
-  //   synchronize: true,
-  // })],
-  TypeOrmModule.forRootAsync({
-    imports: [ConfigModule],
-    inject: [ConfigService],
-    useFactory: (configService: ConfigService) => ({
-      type: 'sqlite',
-      database: configService.get<string>('DB_NAME'),
-      synchronize: true,
-      entities: [Artifact, Artist, User],
-    })
-  })],
+  ArtifactsModule,
+  ArtistsModule,
+  UsersModule,
+  TypeOrmModule.forRoot(dbConfig),
+  // TypeOrmModule.forRootAsync({
+  //   imports: [ConfigModule],
+  //   inject: [ConfigService],
+  //   useFactory: (configService: ConfigService) => ({
+  //     type: 'sqlite',
+  //     database: configService.get<string>('DB_NAME'),
+  //     synchronize: false, //change to false in production, NEVER SYNCHRONIZE IN PRODUCTION
+  //     entities: [Artifact, Artist, User],
+  //   })
+  // })
+],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private configService: ConfigService) {}
+configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(
+        cookieSession({
+          keys: [this.configService.get('COOKIE_KEY')],
+        }),
+      )
+      .forRoutes('*');
+  }
+
+
+}
