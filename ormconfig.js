@@ -1,5 +1,5 @@
 export const dbConfig = {
-    synchronize: true,
+    synchronize: false,
     migrations: ['migrations/*.js'],
     cli: {
         migrationsDir: 'migrations'
