@@ -31,6 +31,9 @@ export class AppService {
   const artifact1 = this.artifactRepo.create({
     name: 'John Doe\'s Art',
     blurb: 'John Doe\'s Art is great',
+    images: ['https://i.imgur.com/0y8Ftya.jpg', 'https://i.imgur.com/0y8Ftya.jpg'],
+    artistId: [1, 2],
+    artistDescription: ['John Doe is a great artist', 'John Doe 2 is a great artist'],
     approved: true,
   });
   await this.artifactRepo.save(artifact1);
@@ -38,6 +41,8 @@ export class AppService {
   const artifact2 = this.artifactRepo.create({
     name: 'John Doe\'s Art 2',
     blurb: 'John Doe\'s Art 2 is great',
+    images: ['https://i.imgur.com/0y8Ftya.jpg', 'https://i.imgur.com/0y8Ftya.jpg'],
+    artistId: [1],
     approved: true,
   });
   await this.artifactRepo.save(artifact2);
