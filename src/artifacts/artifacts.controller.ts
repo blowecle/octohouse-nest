@@ -18,7 +18,7 @@ export class ArtifactsController {
     this.artifactsService.create(body.name, body.blurb);
   }
 
-  @Get()
+  @Get('/seed/confirm')
   async findArtifacts() {
     return await this.artifactsService.find();
   }

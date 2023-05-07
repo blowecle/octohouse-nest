@@ -9,17 +9,17 @@ export class Artifact {
     @Column()
     name: string;
     
-    // @Column()
-    // images: Array<string>;
+    @Column()
+    images: Array<string>;
     
     @Column()
     blurb: string;
     
-    // @Column()
-    // artistId: Array<number>;
+    @Column()
+    artistId: Array<number>;
     
-    // @Column()
-    // artistDescription: Array<string>;
+    @Column()
+    artistDescription: Array<string>;
 
     @Column({default: false})
     approved: boolean;

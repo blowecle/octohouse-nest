@@ -13,8 +13,8 @@ export class Artist {
     @Column({nullable: true})
     company: string;
 
-    // @Column({nullable: true})
-    // social: Array<string>;
+    @Column({nullable: true})
+    social: Array<string>;
 
     @Column({nullable: true})
     blurb: string;
@@ -25,12 +25,9 @@ export class Artist {
     @Column({default: false})
     approved: boolean;
 
-    // @Column({nullable: true})
-    // artifactId: number;
-
     @ManyToMany(() => Artifact, artifact => artifact.artists)
     artifacts: Artifact[];
 
-    // @Column({nullable: true})
-    // artifactId: Array<number>;
+    @Column({nullable: true})
+    artifactId: Array<number>;
 }
