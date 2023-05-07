@@ -9,16 +9,16 @@ export class Artifact {
     @Column()
     name: string;
     
-    @Column()
+    @Column({array: true})
     images: Array<string>;
     
     @Column()
     blurb: string;
     
-    @Column()
+    @Column({array: true})
     artistId: Array<number>;
     
-    @Column()
+    @Column({array: true})
     artistDescription: Array<string>;
 
     @Column({default: false})
