@@ -16,7 +16,7 @@ export class Artifact {
     blurb: string;
     
     @Column("int", {array: true})
-    artistId: Array<number>;
+    artistID: Array<number>;
     
     @Column("text", {array: true})
     artistDescription: Array<string>;
