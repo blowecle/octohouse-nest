@@ -339,7 +339,17 @@ export class AppService {
     "name": "THE NINJA PAINTER",
     "images": ["https://res.cloudinary.com/dyjzfdguj/image/upload/v1678993404/evan%20web%20photos/Ninja_Painter_1-100_h6i2hz.jpg","https://res.cloudinary.com/dyjzfdguj/image/upload/v1678993404/evan%20web%20photos/Ninja_Painter_2-100_zxw6vi.jpg"],
     "blurb": "Take a look at my ceiling sometime. It’s a painted work of art. How about the bookcase? Wow!",
-    "artistID": [20],
+    "artists": [
+      {
+        "artistID": 26,
+        "name": "Wade Burleigh",
+        "company": "",
+        "title": "Wood Carver",
+        "social": ["Burleighwade@yahoo.com"],
+        "blurb": "When Wade isn’t carving wood, he is Santa Claus himself.  He turned an ordinary stump into one of the most awesomely weird and unique pieces of art for the house.",
+        "artifactID": [29]
+      }
+    ],
     "artistDescription": ["PAINTING BY"]
   }
 ]
