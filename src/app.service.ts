@@ -340,7 +340,6 @@ export class AppService {
     "images": ["https://res.cloudinary.com/dyjzfdguj/image/upload/v1678993404/evan%20web%20photos/Ninja_Painter_1-100_h6i2hz.jpg","https://res.cloudinary.com/dyjzfdguj/image/upload/v1678993404/evan%20web%20photos/Ninja_Painter_2-100_zxw6vi.jpg"],
     "blurb": "Take a look at my ceiling sometime. It’s a painted work of art. How about the bookcase? Wow!",
     "artistID": [20],
-    "random": [1,2,3],
     "artistDescription": ["PAINTING BY"]
   }
 ]

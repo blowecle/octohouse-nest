@@ -10,7 +10,7 @@ export class Artifact {
     name: string;
     
     @Column("text", {array: true})
-    images: Array<string>;
+    public images: string[];
     
     @Column()
     blurb: string;
@@ -23,9 +23,6 @@ export class Artifact {
 
     @Column({default: false})
     approved: boolean;
-
-    @Column("int", {array: true, nullable: true})
-    random: Array<number>;
 
     @ManyToMany(() => Artist, artist => artist.artifacts)
     @JoinTable()
