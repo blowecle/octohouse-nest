@@ -18,7 +18,4 @@ export class ArtifactDto {
 
     @Expose()
     artistDescription: string[];
-
-    @Expose()
-    approved: boolean;
 }

@@ -11,11 +11,14 @@ export class ArtistDto {
     company: string;
 
     @Expose()
+    social: string[];
+
+    @Expose()
     blurb: string;
 
     @Expose()
     title: string;
 
     @Expose()
-    approved: boolean;
+    artifactId: number[];
 }
