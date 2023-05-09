@@ -343,6 +343,8 @@ export class AppService {
     "artistDescription": ["PAINTING BY"]
   }
 ]
+
+//seed
   for(const artifactData of artifactsData){
     const artifact = await this.artifactRepo.create(artifactData);
     await this.artifactRepo.save(artifact);
