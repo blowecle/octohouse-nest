@@ -24,6 +24,9 @@ export class Artifact {
     @Column({default: false})
     approved: boolean;
 
+    @Column("int", {array: true, nullable: true})
+    random: Array<number>;
+
     @ManyToMany(() => Artist, artist => artist.artifacts)
     @JoinTable()
     artists: Artist[];
