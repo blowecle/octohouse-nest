@@ -9,4 +9,16 @@ export class ArtifactDto {
 
     @Expose()
     blurb: string;
+
+    @Expose()
+    images: string[];
+
+    @Expose()
+    artistID: number[];
+
+    @Expose()
+    artistDescription: string[];
+
+    @Expose()
+    approved: boolean;
 }
