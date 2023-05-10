@@ -121,7 +121,7 @@ export class AppService {
       "title": "Skull Artist",
       "social": ["https://duendeexoticskulls.carbonmade.com"],
       "blurb": "Anna is a local artist that created the Eyes of Texas longhorn skull, which tells the tale of Texas in thousands of beads. Seeing her art under rainbow lights just takes your breath away. Truly. ",
-      "artifactID": [16]
+      "artifactID": [6]
     },
     {
       "artistID": 13,
