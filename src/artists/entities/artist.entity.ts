@@ -29,5 +29,5 @@ export class Artist {
     artifacts: Artifact[];
 
     @Column("int", {nullable: true, array: true})
-    artifactId: Array<number>;
+    artifactID: Array<number>;
 }
