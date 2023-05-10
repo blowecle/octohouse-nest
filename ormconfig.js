@@ -10,9 +10,9 @@ Object.assign(dbConfig, {
     type: 'postgres',
     url: process.env.DATABASE_URL,
     entities: ['**/*.entity.js'],
-    // ssl: {
-    //     rejectUnauthorized: false
-    // }
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
 
 // switch (process.env.NODE_ENV) {
