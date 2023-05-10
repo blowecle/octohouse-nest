@@ -5,8 +5,13 @@ import { AppService } from './app.service';
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get('/seed/confirm')
+  @Get()
   async getHello(): Promise<any> {
+    return 'hello world';
+  }
+
+  @Get('/seed/confirm')
+  async getSeed(): Promise<any> {
     await this.appService.seed();
     return 'seed complete';
   }
