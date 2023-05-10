@@ -28,6 +28,6 @@ export class Artist {
     @ManyToMany(() => Artifact, artifact => artifact.artists)
     artifacts: Artifact[];
 
-    @Column("int", {nullable: true, array: true})
+    @Column("int", {array: true})
     artifactID: Array<number>;
 }

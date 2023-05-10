@@ -20,5 +20,5 @@ export class ArtistDto {
     title: string;
 
     @Expose()
-    artifactId: number[];
+    artifactID: number[];
 }
