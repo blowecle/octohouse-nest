@@ -112,7 +112,7 @@ export class AppService {
       "title": "Crystal Procurer",
       "social": ["http://naturestreasuresatx.com"],
       "blurb": "",
-      "artifactID": [9]
+      "artifactID": []
     },
     {
       "artistID": 12,
