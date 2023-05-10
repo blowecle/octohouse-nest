@@ -2,7 +2,7 @@ import { Expose } from "class-transformer";
 
 export class ArtistDto {
     @Expose()
-    artistId: number;
+    artistID: number;
 
     @Expose()
     name: string;
