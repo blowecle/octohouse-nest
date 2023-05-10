@@ -2,7 +2,7 @@ import { Expose } from "class-transformer"
 
 export class ArtifactDto {
     @Expose()
-    artifactId: number;
+    artifactID: number;
 
     @Expose()
     name: string;

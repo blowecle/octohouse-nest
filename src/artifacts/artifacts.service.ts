@@ -12,8 +12,8 @@ export class ArtifactsService {
     return await this.repo.find();
   }
 
-  async findOneBy(artifactId: number) {
-    return await this.repo.findOneBy({artifactId});
+  async findOneBy(artifactID: number) {
+    return await this.repo.findOneBy({artifactID});
   }
 
   async create(name: string, blurb: string){

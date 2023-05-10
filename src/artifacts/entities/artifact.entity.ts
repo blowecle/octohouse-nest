@@ -4,7 +4,7 @@ import { Artist } from "src/artists/entities/artist.entity";
 @Entity()
 export class Artifact {
     @PrimaryGeneratedColumn()
-    artifactId: number;
+    artifactID: number;
     
     @Column()
     name: string;
