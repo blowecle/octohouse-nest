@@ -5,7 +5,7 @@ import { Artifact } from "src/artifacts/entities/artifact.entity";
 @Entity()
 export class Artist {
     @PrimaryGeneratedColumn()
-    artistId: number;
+    artistID: number;
 
     @Column()
     name: string;
