@@ -13,8 +13,8 @@ export class ArtistsService {
     return await this.repo.find();
   }
 
-  async findOneBy(artistId: number) {
-    return await this.repo.findOneBy({artistId})
+  async findOneBy(artistID: number) {
+    return await this.repo.findOneBy({artistID})
   }
 
   async create(artistDto: CreateArtistDto) {
